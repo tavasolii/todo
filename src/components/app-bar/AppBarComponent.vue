@@ -9,7 +9,7 @@
       <template v-slot:append>
         <v-tooltip text="add a new todo list" location="bottom"  >
           <template v-slot:activator="{ props }">
-            <v-btn v-bind="props" icon="mdi-plus" outlined color="success" size="small">
+            <v-btn v-bind="props" icon="mdi-plus" @click="$emit('add')" outlined color="success" size="small">
               <v-icon class="pa-4" size="30px" style="border: 3px solid green; border-radius: 50% ;">
                 mdi-plus
               </v-icon></v-btn>

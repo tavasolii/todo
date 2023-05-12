@@ -7,7 +7,7 @@
             {{ title }}
           </div>
           <div>
-            <v-btn flat icon="mdi-trash-can" outlined
+            <v-btn flat icon="mdi-trash-can" @click="$emit('delete')" outlined
               ><v-icon color="error">mdi-trash-can</v-icon></v-btn
             >
             <v-btn flat icon="mdi-pen" outlined
