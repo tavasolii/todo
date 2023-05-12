@@ -47,6 +47,8 @@ watch(
   todos, (newTodoValue) => {
     console.log('kchanges');
     localStorage.setItem("todos", JSON.stringify(newTodoValue));
+  store.commit('storeTodos', todos.value )
+
   },
   { deep: true }
 );
@@ -58,8 +60,21 @@ window.addEventListener("storage", () => {
 });
 const event = new Event('itemInserted');
 document.dispatchEvent(event);
-
+// https://github.com/vuejs/vuex/blob/main/examples/composition/todomvc/store/actions.js
 const fuck = computed(() => JSON.parse(localStorage.getItem("todos")) || [])
+const devices = computed(() => store.getters.getTodos)
+watch(devices, () => {
+console.log('fuck youuuuuuuuuuuuuuuuuuuuuu');
+})
+watch(() => store.getters.getTodos, () => {
+      console.log('value changes detected');
+  todos.value = JSON.parse(localStorage.getItem("todos")) || [];
+
+   });
+console.log('*-*-*-*-*-*-*-*-')
+console.log(devices)
+console.log('*-*-*-*-*-*-*-*-')
+
 console.log(fuck);
 window.addEventListener('storage', function() {
  console.log('Woohoo, someone changed my localstorage va another tab/window!');

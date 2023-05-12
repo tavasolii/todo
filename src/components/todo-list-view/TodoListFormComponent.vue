@@ -87,6 +87,8 @@
 
 <script>
 import { ref } from "vue";
+import { useStore } from 'vuex'
+
 
 export default {
   props: {
@@ -97,6 +99,8 @@ export default {
     },
   },
   setup(props, { emit }) {
+const store = useStore()
+
     const title = ref("");
     const todoListDesc = ref("");
     const date = ref("");
@@ -149,11 +153,14 @@ export default {
       temp.push(newItem);
       console.log(temp);
       window.localStorage.setItem("todos", JSON.stringify(temp));
+      store.commit('storeTodos', temp )
+
       emit("close");
     };
 
     return {
       todo,
+      store,
       time,
       addItem,
       title,
