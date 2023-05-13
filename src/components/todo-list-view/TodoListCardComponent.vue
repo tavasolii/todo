@@ -45,5 +45,4 @@ const props = defineProps({
   },
 });
 
-const test = ref("i want thisss");
 </script>

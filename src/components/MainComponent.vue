@@ -31,7 +31,6 @@ import TodoListFormComponent from "./todo-list-view/TodoListFormComponent.vue";
 
 const todos = ref([]);
 onMounted(() => {
-  console.log(`the component is now mounted.`);
   todos.value = JSON.parse(localStorage.getItem("todos")) || [];
 });
 const showModal = ref(false);
@@ -43,6 +42,7 @@ const deleteTodo = todo => {
 
 const edit = todo => {
   window.location.href = `/todolist/${todo.title}`
+  store.commit('storeTodo', todo )
 }
 watch(
   todos, (newTodoValue) => {

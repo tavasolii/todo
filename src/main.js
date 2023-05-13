@@ -15,24 +15,29 @@ import { createStore } from 'vuex'
 const store = createStore({
   state () {
     return {
-      count: 0,
       todos: window.localStorage.todos ? JSON.stringify(window.localStorage.todos) : [],
+      todo: window.localStorage.todo ? JSON.parse(window.localStorage.todo) : {},
     }
   },
   mutations: {
-    increment (state) {
-      state.count++
-    },
     storeTodos(state, todos) {
       state.todos = todos
       window.localStorage.setItem("todos", JSON.stringify(todos));
 
+    },
+
+    storeTodo(state, todo) {
+      state.todo = todo
+      localStorage.setItem('todo', JSON.stringify(todo))
     },
   },
 
   getters: {
     getTodos(state) {
       return state.todos
+    },
+    getTodo(state) {
+      return state.todo
     },
   }
 })
