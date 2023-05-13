@@ -1,8 +1,8 @@
 <template>
   <v-card class="ma-6">
-    <v-btn @click="modal = true" variant="outlined" color="success"
+    <!-- <v-btn @click="modal = true" variant="outlined" color="success"
       >Add Item</v-btn
-    >
+    > -->
     <v-dialog v-model="modal" max-width="600" persistent>
       <v-card class="pa-8">
         <v-card-title class="d-flex justify-space-between">
