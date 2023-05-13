@@ -20,8 +20,9 @@
       </div>
     </v-card-item>
 
-    <v-card-actions class="d-flex justify-end">
-      <div class="text-overline mb-1">
+    <v-card-actions class="d-flex justify-end  ">
+
+      <div class="text-overline align-self-end" height="100">
         {{ date }}
       </div>
     </v-card-actions>
