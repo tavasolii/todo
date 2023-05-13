@@ -7,11 +7,11 @@
         :modal="showModal"
         @close="showModal = false"
       ></todo-list-form-component>
-      {{ fuck }}
       <v-row v-if="todos">
         <v-col cols="12" lg="4" md="6" sm="12" v-for="todo in todos" :key="todo">
           <todo-list-card-component
             @delete="deleteTodo(todo)"
+            @edit="edit(todo)"
             :title="todo.title"
             :list_desc="todo.todoListDesc"
             :date="'5/12/2023'"
@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch, computed } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { useStore } from 'vuex'
 import AppBarComponent from "@/components/app-bar/AppBarComponent.vue";
 import TodoListCardComponent from "./todo-list-view/TodoListCardComponent.vue";
@@ -36,48 +36,27 @@ onMounted(() => {
 });
 const showModal = ref(false);
 const store = useStore()
-store.commit('increment')
 
-console.log(store.state.count)
-
-const deleteTodo = (todo) => {
+const deleteTodo = todo => {
   todos.value = todos.value.filter((x) => x !== todo);
 };
+
+const edit = todo => {
+  window.location.href = `/todolist/${todo.title}`
+}
 watch(
   todos, (newTodoValue) => {
-    console.log('kchanges');
     localStorage.setItem("todos", JSON.stringify(newTodoValue));
   store.commit('storeTodos', todos.value )
 
   },
   { deep: true }
 );
-document.addEventListener('storage', console.log('lklklk'));
-window.addEventListener("storage", () => {
-  // When local storage changes, dump the list to
-  console.log('lklklk')
-  console.log(JSON.parse(window.localStorage.getItem("todos")));
-});
-const event = new Event('itemInserted');
-document.dispatchEvent(event);
-// https://github.com/vuejs/vuex/blob/main/examples/composition/todomvc/store/actions.js
-const fuck = computed(() => JSON.parse(localStorage.getItem("todos")) || [])
-const devices = computed(() => store.getters.getTodos)
-watch(devices, () => {
-console.log('fuck youuuuuuuuuuuuuuuuuuuuuu');
-})
+
 watch(() => store.getters.getTodos, () => {
-      console.log('value changes detected');
   todos.value = JSON.parse(localStorage.getItem("todos")) || [];
 
    });
-console.log('*-*-*-*-*-*-*-*-')
-console.log(devices)
-console.log('*-*-*-*-*-*-*-*-')
 
-console.log(fuck);
-window.addEventListener('storage', function() {
- console.log('Woohoo, someone changed my localstorage va another tab/window!');
-});
 </script>
 

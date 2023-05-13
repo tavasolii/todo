@@ -10,7 +10,7 @@
             <v-btn flat icon="mdi-trash-can" @click="$emit('delete')" outlined
               ><v-icon color="error">mdi-trash-can</v-icon></v-btn
             >
-            <v-btn flat icon="mdi-pen" outlined
+            <v-btn flat icon="mdi-pen" outlined @click="$emit('edit')"
               ><v-icon color="warning">mdi-pencil</v-icon></v-btn
             >
           </div>

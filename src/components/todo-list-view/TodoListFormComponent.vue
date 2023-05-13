@@ -30,13 +30,12 @@
         ></v-textarea>
         <span>items info:</span>
         <div v-for="(item, index) in items" :key="item">
-          item {{ index+1 }}:
+          item {{ index + 1 }}:
           <v-text-field
             v-model="item.itemTitle"
             variant="outlined"
             :counter="10"
             label="item title"
-            @input="tt()"
           ></v-text-field>
 
           <v-textarea
@@ -69,12 +68,12 @@
             variant="outlined"
             :items="[1, 2, 3, 4]"
           ></v-select>
-          <v-divider :thickness="8" ></v-divider>
+          <v-divider :thickness="8"></v-divider>
         </div>
 
-        <v-btn @click="addItem" icon flat color="success"><v-icon>mdi-plus</v-icon></v-btn>
-
-
+        <v-btn @click="addItem" icon flat color="success"
+          ><v-icon>mdi-plus</v-icon></v-btn
+        >
       </form>
       <v-card-actions>
         <v-btn class="me-4" type="submit" @click="submit()"> submit </v-btn>
@@ -87,8 +86,7 @@
 
 <script>
 import { ref } from "vue";
-import { useStore } from 'vuex'
-
+import { useStore } from "vuex";
 
 export default {
   props: {
@@ -99,7 +97,7 @@ export default {
     },
   },
   setup(props, { emit }) {
-const store = useStore()
+    const store = useStore();
 
     const title = ref("");
     const todoListDesc = ref("");
@@ -113,7 +111,6 @@ const store = useStore()
     const todo = ref({
       title: "",
       todoListDesc: "",
-
     });
 
     const items = ref([
@@ -137,23 +134,16 @@ const store = useStore()
     };
 
     const time = ref("");
-    console.log("knknknknkn");
-    const tt = () => {
-      console.log(todoListDesc);
-    };
 
     const submit = () => {
-      console.log('sdasdsadddsadasadsdaasd');
       const temp = JSON.parse(localStorage.getItem("todos") || "[]");
-      const newItem = {}
-      newItem.title = todo.value.title
-      newItem.todoListDesc = todo.value.todoListDesc
-      newItem.items = items.value
-      console.log(newItem);
+      const newItem = {};
+      newItem.title = todo.value.title;
+      newItem.todoListDesc = todo.value.todoListDesc;
+      newItem.items = items.value;
       temp.push(newItem);
-      console.log(temp);
       window.localStorage.setItem("todos", JSON.stringify(temp));
-      store.commit('storeTodos', temp )
+      store.commit("storeTodos", temp);
 
       emit("close");
     };
@@ -173,7 +163,6 @@ const store = useStore()
       submit,
       itemTitle,
       itemDesc,
-      tt,
       picker: new Date().toISOString().substr(0, 10),
       landscape: false,
       reactive: false,

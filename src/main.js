@@ -26,7 +26,6 @@ const store = createStore({
     storeTodos(state, todos) {
       state.todos = todos
       window.localStorage.setItem("todos", JSON.stringify(todos));
-      console.log('log+++++');
 
     },
   },

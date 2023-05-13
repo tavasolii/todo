@@ -17,8 +17,8 @@ const routes = [
     ],
   },
   {
-    path: '/todolist',
-    component: () => import('@/layouts/default/Default.vue'),
+    path: '/todolist/:title',
+    component: () => import('@/layouts/default/ItemShow.vue'),
     children: [
       {
         path: '',
