@@ -1,5 +1,5 @@
 # base
-
+compositionApi, vue3, vuex, vuetify 
 ## Project setup
 
 ```
